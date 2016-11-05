@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import static android.widget.Toast.LENGTH_SHORT;
@@ -17,6 +18,10 @@ import static android.widget.Toast.makeText;
 
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener{
     LinearLayout linearLayout;
+    TextView textView;
+    private long pressTime = -1l;
+    private long releaseTime = 1l;
+    private long duration = -1l;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         linearLayout = (LinearLayout) findViewById(R.id.linearPrincipal);
         linearLayout.setOnTouchListener(this);
+
+        textView = (TextView) findViewById(R.id.textview);
     }
 
     @Override
@@ -61,18 +68,19 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
+        float x = event.getX();
+        float y = event.getY();
         switch (event.getAction()){
 
             case MotionEvent.ACTION_DOWN:
-                Toast.makeText(MainActivity.this, "ACTION_DOWN", LENGTH_SHORT).show();
-                break;
-            case MotionEvent.ACTION_MOVE:
-                Toast.makeText(MainActivity.this, "ACTION_MOVE", LENGTH_SHORT).show();
+                pressTime = System.currentTimeMillis();
+                if(releaseTime != -1l) duration = pressTime - releaseTime;
+
                 break;
             case MotionEvent.ACTION_UP:
-                Toast.makeText(MainActivity.this, "ACTION_UP", LENGTH_SHORT).show();
-                
-                
+                releaseTime = System.currentTimeMillis();
+                duration = System.currentTimeMillis() - pressTime;
+                Toast.makeText(MainActivity.this, "tiempo: " + duration, Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
