@@ -3,4 +3,17 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <!--Colores de La Aplicacion-->
+    <color name="actionBar">#00bcd4</color>
+    <color name="blanco">#FFFFFF</color>
+    <color name="fondo_principal">#07c3b2</color>
+    <color name="btn_nuevo">#cddc39</color>
+    <color name="btn_editar">#ffc107</color>
+    <color name="btn_play">#ff9800</color>
+    <color name="btn_stop">#ff5722</color>
+    <color name="btn_save">#13ce66</color>
+    <color name="nombre_ritmo">#1ee275</color>
+    <color name="btn_escuchar">#cddc39</color>
+    <color name="btn_eliminar">#ff5722</color>
+    <color name="negro">#000000</color>
 </resources>

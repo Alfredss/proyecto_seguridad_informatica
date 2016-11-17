@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Proyecto_Seguridad</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_create">Create</string>
+    <string name="title_activity_edit">Edit</string>
+
+    <string name="titulo_aplicacion">MORSEKEY</string>
+    <string name="nombre_nuevo_ritmo">Nombre Nuevo Ritmo</string>
+    <string name="btn_play">Play</string>
+    <string name="btn_stop">Stop</string>
+    <string name="btn_save">Save</string>
 </resources>

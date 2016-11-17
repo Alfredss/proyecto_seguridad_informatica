@@ -1,5 +1,8 @@
 package mundo.hola.com.example.alfre.proyecto_seguridad;
 
+import android.graphics.Color;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -7,41 +10,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.widget.Toast.LENGTH_SHORT;
-import static android.widget.Toast.makeText;
+public class Create extends AppCompatActivity implements View.OnTouchListener{
+    ImageView imgCircle;
+    Button btn;
 
-public class MainActivity extends AppCompatActivity implements View.OnTouchListener{
-    LinearLayout linearLayout;
-    TextView textView;
-    Button btnTiempos;
-
-    //EJEMPLO 01
-
+    //varaiables de tiempos
     private long pressTime = -1l;
     private long releaseTime = 1l;
     private long duration = -1l;
-
-
-
-
     private List<Long> durations = new ArrayList<Long>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_create);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().hide();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -51,50 +43,30 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                         .setAction("Action", null).show();
             }
         });
+        //Imagen Circulo
+        imgCircle = (ImageView) findViewById(R.id.imgCircle);
+        imgCircle.setOnTouchListener(this);
+        ShapeDrawable d = new ShapeDrawable (new OvalShape());
+        d.setIntrinsicHeight(500);
+        d.setIntrinsicWidth(500);
+        d.getPaint().setColor(Color.rgb(0, 250, 154));
+        imgCircle.setBackgroundDrawable(d);
 
-        linearLayout = (LinearLayout) findViewById(R.id.linearPrincipal);
-        linearLayout.setOnTouchListener(this);
 
-        textView = (TextView) findViewById(R.id.textview);
-
-        btnTiempos = (Button) findViewById(R.id.btnTiempos);
-        btnTiempos.setOnClickListener(new View.OnClickListener() {
+        btn = (Button) findViewById(R.id.btnTimes);
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (v.getId()){
-                    case R.id.btnTiempos:
-                        for (Long tiempos : durations){
-                            Toast.makeText(MainActivity.this, "tiempo " + tiempos, Toast.LENGTH_SHORT).show();
-
+                switch (v.getId()) {
+                    case R.id.btnTimes:
+                        for (Long tiempos : durations) {
+                            Toast.makeText(Create.this, "tiempo " + tiempos, Toast.LENGTH_SHORT).show();
                         }
                         durations.clear();
                         break;
                 }
-
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -112,14 +84,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 releaseTime = System.currentTimeMillis();
                 duration = System.currentTimeMillis() - pressTime;
                 durations.add(duration);
-
                 break;
-
             default:
                 break;
         }
-        //Toast.makeText(MainActivity.this, "Tocaste la pantalla",Toast.LENGTH_SHORT).show();
         return true;
-
     }
 }

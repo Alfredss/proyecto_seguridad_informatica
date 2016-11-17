@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="mundo.hola.com.example.alfre.proyecto_seguridad.Edit"
+    tools:showIn="@layout/activity_edit">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/actionBar"
+        android:gravity="center"
+        android:elevation="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/titulo_aplicacion"
+            android:textSize="45sp"
+            android:textColor="@color/blanco"
+            />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/fondo_principal">
+        <LinearLayout
+            android:id="@+id/linearMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/fondo_principal">
+            <Button
+                android:id="@+id/btnCreador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="crea Layout"
+                />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
