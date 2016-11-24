@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +34,9 @@ public class Edit extends AppCompatActivity {
             }
         });
         final LinearLayout lm = (LinearLayout) findViewById(R.id.linearMain);
+        final RadioGroup rg = new RadioGroup(getApplicationContext());
+        rg.setId(1+2);
+        lm.addView(rg);
 
         btnCreador = (Button) findViewById(R.id.btnCreador);
         btnCreador.setOnClickListener(new View.OnClickListener() {
@@ -62,20 +67,38 @@ public class Edit extends AppCompatActivity {
                 nombre_ritmo.setBackgroundColor(getResources().getColor(R.color.nombre_ritmo));
                 ll.addView(nombre_ritmo, params);
 
+                //RadioButton
+
+                final RadioButton rb = new RadioButton(getApplicationContext());
+
+
+
                 //Button Escuchar
                 final Button btnE = new Button(getApplicationContext());
                 // Give button an ID
-                btnE.setId(j+1);
-                btnE.setText("Escuchar");
+                btnE.setId(j + 1);
+                btnE.setText("Es");
+                btnE.setWidth(50);
                 btnE.setBackgroundColor(getResources().getColor(R.color.btn_escuchar));
                 // set the layoutParams on the button
                 btnE.setLayoutParams(paramsbtn);
-
-                // Create Button Eliminar
+                /*
+                //Button Activar
+                final Button btnA = new Button(getApplicationContext());
+                // Give button an ID
+                btnA.setId(j+1);
+                btnA.setText("Ac");
+                btnA.setWidth(50);
+                btnA.setBackgroundColor(getResources().getColor(R.color.btn_activar));
+                // set the layoutParams on the button
+                btnA.setLayoutParams(paramsbtn);
+                */
+                // Button Eliminar
                 final Button btnD = new Button(getApplicationContext());
                 // Give button an ID
                 btnD.setId(j+1);
-                btnD.setText("eliminar");
+                btnD.setText("El");
+                btnD.setWidth(50);
                 btnD.setBackgroundColor(getResources().getColor(R.color.btn_eliminar));
                 // set the layoutParams on the button
                 btnD.setLayoutParams(paramsbtn);
@@ -98,11 +121,14 @@ public class Edit extends AppCompatActivity {
                 });
 
                 //Add button to LinearLayout
+                //ll.addView(btnA);
+                rg.addView(rb);
                 ll.addView(btnE);
                 ll.addView(btnD);
-                //Add button to LinearLayout defined in XML
-                lm.addView(ll);
 
+
+                //Add button to LinearLayout defined in XML
+                rg.addView(ll);
             }
         });
     }

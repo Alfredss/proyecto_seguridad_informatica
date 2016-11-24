@@ -24,12 +24,14 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,8 @@ public class Principal extends AppCompatActivity implements View.OnTouchListener
     LinearLayout linearLayout;
     ImageView circle;
     Button btnNuevo, btnEditar;
+    ToggleButton tbEncender;
+    boolean estadoOnOff=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,31 @@ public class Principal extends AppCompatActivity implements View.OnTouchListener
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+
+        //ToggleButton
+        tbEncender = (ToggleButton) findViewById(R.id.tbEncender);
+
+        tbEncender.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked){
+                    //APLICACION ACTIVADA
+                    //activar botones si existe un ritmo
+                    btnNuevo.setEnabled(true);
+                    btnEditar.setEnabled(true);
+                    estadoOnOff = true;
+                    //guardar estado en la base de datos
+                    //llevarte directamente a crear un tono si no lo tienes o que te muestre un mensaje
+                }else{
+                    //APLICACION DESACTIVADA
+                    btnNuevo.setEnabled(false);
+                    btnEditar.setEnabled(false);
+                    estadoOnOff = false;
+                    //guardar estado en la base de datos
+                }
             }
         });
 
@@ -77,7 +106,13 @@ public class Principal extends AppCompatActivity implements View.OnTouchListener
                 startActivity(intent);
             }
         });
-
+        if(estadoOnOff){
+            tbEncender.setChecked(true);
+        }else{
+            tbEncender.setChecked(false);
+            btnNuevo.setEnabled(false);
+            btnEditar.setEnabled(false);
+        }
         linearLayout = (LinearLayout) findViewById(R.id.relative_principal);
         linearLayout.setOnTouchListener(this);
 

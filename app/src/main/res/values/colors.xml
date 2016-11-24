@@ -15,5 +15,7 @@
     <color name="nombre_ritmo">#1ee275</color>
     <color name="btn_escuchar">#cddc39</color>
     <color name="btn_eliminar">#ff5722</color>
+    <color name="btn_activar">#00bcd4</color>
     <color name="negro">#000000</color>
+
 </resources>
